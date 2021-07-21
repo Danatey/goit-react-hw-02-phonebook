@@ -21,7 +21,6 @@ class ContactForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-
         this.props.onSubmit({ id: nanoid(), ...this.state });
         this.reset();
     };
@@ -38,10 +37,10 @@ class ContactForm extends Component {
                 {
                     const generateID = nanoid();
                     let value
-                    if (name === Name) {
+                    if (name === 'Name') {
                         value=Name
                     }
-                    if (name === Number) {
+                    if (name === 'Number') {
                         value= Number
                     }
                     return (<Input

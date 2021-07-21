@@ -1,11 +1,13 @@
+// import PropTypes from 'prop-types';
+
 import Button from "../Button";
 
 const ContactsListItem = ({ onDelete, contacts }) => (
   <>
-    {contacts.map(({ id, name, number }) => {
+    {contacts.map(({ id, Name, Number }) => {
       return (
         <li key={id}>
-          {name}: {number}
+          {Name}: {Number}
           <Button btnType="button" btnName="Delete" onClick={() => onDelete(id)}/>
         </li>
       );

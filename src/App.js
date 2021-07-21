@@ -7,24 +7,23 @@ import ContactsListItem from "./Components/ContactsListItem";
 
 class App extends Component {
   state = {
-    // contacts: [],
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
+    contacts: [],
+    // contacts: [
+    //   { id: "id-1", Name: "Rosie Simpson", Number: "459-12-56" },
+    //   { id: "id-2", Name: "Hermione Kline", Number: "443-89-12" },
+    //   { id: "id-3", Name: "Eden Clements", Number: "645-17-79" },
+    //   { id: "id-4", Name: "Annie Copeland", Number: "227-91-26" },
+    // ],
     filter: "",
   };
 
   formSubmitHandler = (data) => {
     const isInContacts = (contact) => {
-      console.log(data);
-      return contact.name === data.name;
+      return contact.Name === data.Name;
     };
-
+    console.log(this.state.contacts.some(isInContacts));
     if (this.state.contacts.some(isInContacts)) {
-      alert(`${data.name} is already in contacts`);
+      alert(`${data.Name} is already in contacts`);
       return;
     } else
       this.setState((prevState) => ({
@@ -49,9 +48,8 @@ class App extends Component {
     const { contacts, filter } = this.state;
 
     const normalizedFilter = filter.toLocaleLowerCase();
-
     const filteredContactList = contacts.filter((contact) =>
-      contact.name.toLocaleLowerCase().includes(normalizedFilter)
+      contact.Name.toLocaleLowerCase().includes(normalizedFilter)
     );
     return (
       <div>
