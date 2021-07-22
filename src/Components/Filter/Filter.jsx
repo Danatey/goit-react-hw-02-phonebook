@@ -1,10 +1,22 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
+
+import Input from '../Input';
+
+import './Filter.scss'
+
+const generateID = nanoid();
 
 const Filter = ({ value, onChange }) => (
-  <label>
-    Find contacts by name
-    <input type="text" value={value} onChange={onChange}></input>
-  </label>
+  <Input
+    value={value}
+    onChange={onChange}
+    type="text"
+    id={generateID}
+    name="Find contacts by name"
+    classLabel="filter-label"
+    classInput="filter-input"
+  />
 );
 
 Filter.propTypes = {

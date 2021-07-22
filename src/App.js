@@ -5,15 +5,17 @@ import Filter from "./Components/Filter";
 import ContactList from "./Components/ContactList";
 import ContactsListItem from "./Components/ContactsListItem";
 
+import "./App.scss";
+
 class App extends Component {
   state = {
-    contacts: [],
-    // contacts: [
-    //   { id: "id-1", Name: "Rosie Simpson", Number: "459-12-56" },
-    //   { id: "id-2", Name: "Hermione Kline", Number: "443-89-12" },
-    //   { id: "id-3", Name: "Eden Clements", Number: "645-17-79" },
-    //   { id: "id-4", Name: "Annie Copeland", Number: "227-91-26" },
-    // ],
+    // contacts: [],
+    contacts: [
+      { id: "id-1", Name: "Rosie Simpson", Number: "459-12-56" },
+      { id: "id-2", Name: "Hermione Kline", Number: "443-89-12" },
+      { id: "id-3", Name: "Eden Clements", Number: "645-17-79" },
+      { id: "id-4", Name: "Annie Copeland", Number: "227-91-26" },
+    ],
     filter: "",
   };
 
@@ -52,11 +54,11 @@ class App extends Component {
       contact.Name.toLocaleLowerCase().includes(normalizedFilter)
     );
     return (
-      <div>
-        <h2>Phonebook</h2>
+      <div className="container">
+        <h2 className="title">Phonebook</h2>
         <ContactForm onSubmit={this.formSubmitHandler} />
 
-        <h2>Contacts</h2>
+        <h2 className="secondary-title">Contacts</h2>
         {contacts.length > 0 ? (
           <>
             <Filter onChange={this.filterHandler} value={filter} />
@@ -68,7 +70,7 @@ class App extends Component {
             </ContactList>
           </>
         ) : (
-          <span>You have no contacts yet </span>
+          <span className="contact-message">You have no contacts yet </span>
         )}
       </div>
     );

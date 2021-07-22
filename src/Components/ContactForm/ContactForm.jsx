@@ -7,6 +7,8 @@ import Input from '../Input';
 import ButtonEl from './ButtonEl.json';
 import InputEl from './InputEl.json';
 
+import './ContactForm.scss'
+
 class ContactForm extends Component {
     state = {
         Name: '',
@@ -32,8 +34,8 @@ class ContactForm extends Component {
     render() {
         const { Name, Number } = this.state;
         return (
-            <form onSubmit={this.handleSubmit}>
-                {InputEl.map(({ type, name, pattern, title }) =>
+            <form className="form-container" onSubmit={this.handleSubmit}>
+                {InputEl.map(({ type, name, pattern, title}) =>
                 {
                     const generateID = nanoid();
                     let value
@@ -52,6 +54,8 @@ class ContactForm extends Component {
                         key={name}
                         id={generateID}
                         onChange={this.handleChange}
+                        classLabel="form-label"
+                        classInput="form-input"
                         />)
                 })}
                 {ButtonEl.map(({ btnType, btnName }) =>
@@ -60,6 +64,7 @@ class ContactForm extends Component {
                         btnType={btnType}
                         btnName={btnName}
                         key={btnName}
+                        classButton="form-button"
                     />)
                 })}
             </form>
