@@ -1,4 +1,6 @@
-const Input = ({type, value, name, pattern, title, id, onChange}) => {
+import Proptypes from 'prop-types'
+
+const Input = ({ type, value, name, pattern, title, id, onChange }) => {
   return (<>
         <label htmlFor={id}>{name}</label>
         <input
@@ -12,6 +14,16 @@ const Input = ({type, value, name, pattern, title, id, onChange}) => {
           required/>  
         </>
     )
+}
+
+Input.propTypes = {
+  type: Proptypes.string.isRequired,
+  value: Proptypes.string.isRequired,
+  name: Proptypes.string,
+  pattern: Proptypes.string,
+  title: Proptypes.string,
+  id: Proptypes.string.isRequired,
+  onChange: Proptypes.func.isRequired,
 }
 
 export default Input

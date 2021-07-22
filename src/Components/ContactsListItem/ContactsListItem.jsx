@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Button from "../Button";
 
@@ -14,5 +14,16 @@ const ContactsListItem = ({ onDelete, contacts }) => (
     })}
   </>
 );
+
+ContactsListItem.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      Name: PropTypes.string.isRequired,
+      Number: PropTypes.string.isRequired,
+    }),
+  ),
+  onDelete: PropTypes.func,
+};
 
 export default ContactsListItem
