@@ -6,10 +6,10 @@ import './ContactsListItem.scss'
 
 const ContactsListItem = ({ onDelete, contacts }) => (
   <>
-    {contacts.map(({ id, Name, Number }) => {
+    {contacts.map(({ id, name, number }) => {
       return (
         <li key={id} className="contact-item">
-          {Name}: {Number}
+          {name}: {number}
           <Button
             btnType="button"
             btnName="Delete"
@@ -26,8 +26,8 @@ ContactsListItem.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      Name: PropTypes.string.isRequired,
-      Number: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     }),
   ),
   onDelete: PropTypes.func,

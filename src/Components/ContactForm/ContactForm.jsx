@@ -2,24 +2,26 @@ import React, { Component } from "react";
 import { nanoid } from 'nanoid';
 
 import Button from '../Button';
-import Input from '../Input';
 
 import ButtonEl from './ButtonEl.json';
-import InputEl from './InputEl.json';
+
 
 import './ContactForm.scss'
 
 class ContactForm extends Component {
     state = {
-        Name: '',
-        Number: '',
+        name: '',
+        number: '',
     };
     
-    handleChange = event => {
-        const { name, value } = event.currentTarget;
+    nameInputId = nanoid();
+    numberInputId = nanoid();
 
-        this.setState({ [name]: value });
-    };
+  handleChange = event => {
+    const { name, value } = event.currentTarget;
+
+    this.setState({ [name]: value });
+  };
 
     handleSubmit = event => {
         event.preventDefault();
@@ -32,32 +34,34 @@ class ContactForm extends Component {
     };
 
     render() {
-        const { Name, Number } = this.state;
+        const { name, number } = this.state;
+        
         return (
             <form className="form-container" onSubmit={this.handleSubmit}>
-                {InputEl.map(({ type, name, pattern, title}) =>
-                {
-                    const generateID = nanoid();
-                    let value
-                    if (name === 'Name') {
-                        value=Name
-                    }
-                    if (name === 'Number') {
-                        value= Number
-                    }
-                    return (<Input
-                        type={type}
-                        value={value}
-                        name={name}
-                        pattern={pattern}
-                        title={title}
-                        key={name}
-                        id={generateID}
-                        onChange={this.handleChange}
-                        classLabel="form-label"
-                        classInput="form-input"
-                        />)
-                })}
+                <label htmlFor={this.nameInputId} className="form-label">Name</label>
+                <input
+                className="form-input"
+                type="text"
+                value={name}
+                name="name"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                required
+                onChange={this.handleChange}
+                id={this.nameInputId}
+                />
+                <label htmlFor={this.numberInputId} className="form-label">Number</label>
+                <input
+                className="form-input"
+                type="tel"
+                name="number"
+                value={number}
+                pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
+                title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
+                required
+                onChange={this.handleChange}
+                id={this.numberInputId}
+                />
                 {ButtonEl.map(({ btnType, btnName }) =>
                 {
                     return (<Button

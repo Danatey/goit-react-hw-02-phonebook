@@ -11,22 +11,20 @@ class App extends Component {
   state = {
     contacts: [],
     // contacts: [
-    //   { id: "id-1", Name: "Rosie Simpson", Number: "459-12-56" },
-    //   { id: "id-2", Name: "Hermione Kline", Number: "443-89-12" },
-    //   { id: "id-3", Name: "Eden Clements", Number: "645-17-79" },
-    //   { id: "id-4", Name: "Annie Copeland", Number: "227-91-26" },
+    //   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+    //   { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+    //   { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+    //   { id: "id-4", nnme: "Annie Copeland", number: "227-91-26" },
     // ],
     filter: "",
   };
 
   formSubmitHandler = (data) => {
     const isInContacts = (contact) => {
-      return contact.Name === data.Name;
+      return contact.name === data.name;
     };
-    console.log(this.state.contacts.some(isInContacts));
     if (this.state.contacts.some(isInContacts)) {
-      alert(`${data.Name} is already in contacts`);
-      return;
+      alert(`${data.name} is already in contacts`);
     } else
       this.setState((prevState) => ({
         contacts: [...prevState.contacts, data],
@@ -51,7 +49,7 @@ class App extends Component {
 
     const normalizedFilter = filter.toLocaleLowerCase();
     const filteredContactList = contacts.filter((contact) =>
-      contact.Name.toLocaleLowerCase().includes(normalizedFilter)
+      contact.name.toLocaleLowerCase().includes(normalizedFilter)
     );
     return (
       <div className="container">
